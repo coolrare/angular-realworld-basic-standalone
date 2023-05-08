@@ -79,4 +79,12 @@ export class AppComponent {
       favoritesCount: 5,
     },
   ];
+  originalList = this.list;
+
+  searchArticles(keyword: string) {
+    if (!keyword) {
+      this.list = this.originalList;
+    }
+    this.list = this.originalList.filter(item => item.title.includes(keyword));
+  }
 }

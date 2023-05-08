@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
+  @Output() keywordSearch = new EventEmitter<string>();
   keyword = '';
   highlightTitle = false;
   fontSize = 24;
@@ -17,6 +18,9 @@ export class HeaderComponent {
   search(event: MouseEvent) {
     this.fontSize += 2;
     this.highlightTitle = !this.highlightTitle;
+
     console.log(event);
+
+    this.keywordSearch.emit(this.keyword);
   }
 }
