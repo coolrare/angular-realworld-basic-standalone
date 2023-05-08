@@ -5,6 +5,7 @@ import { ArticlesComponent } from './articles/articles.component';
 import { TagsComponent } from './tags/tags.component';
 import { FooterComponent } from './footer/footer.component';
 import { ArticleService } from './article.service';
+import { FilterArticlePipe } from './filter-article.pipe';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ import { ArticleService } from './article.service';
     ArticlesComponent,
     TagsComponent,
     FooterComponent,
+    FilterArticlePipe
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
@@ -28,14 +30,17 @@ export class AppComponent implements OnInit {
   // 預設為全部文章
   list = this.articleService.searchArticles('');
 
+  // 要搜尋的關鍵字 (前端搜尋)
+  keyword = '';
+
   ngOnInit(): void {
     this.articleService.getArticles().subscribe((data) => {
       this.list = data;
     });
   }
 
-  // 根據關鍵字搜尋文章
   searchArticles(keyword: string) {
-    this.list = this.articleService.searchArticles(keyword);
+    // 指定搜尋關鍵字
+    this.keyword = keyword;
   }
 }
