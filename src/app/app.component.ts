@@ -19,5 +19,6 @@ import { FooterComponent } from './footer/footer.component';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'angular-basic-realworld-standalone';
+  title = 'conduit';
+  subtitle = 'A place to share your knowledge.';
 }
