@@ -1,9 +1,13 @@
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ArticleService {
+  httpClient = inject(HttpClient);
+
   list = [
     {
       title:
@@ -69,5 +73,11 @@ export class ArticleService {
       return this.list;
     }
     return this.list.filter((item) => item.title.includes(keyword));
+  }
+
+  getArticles() {
+    return this.httpClient
+      .get('https://conduit.productionready.io/api/articles')
+      .pipe(map((response: any) => response.articles));
   }
 }

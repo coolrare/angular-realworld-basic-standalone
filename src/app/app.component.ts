@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { ArticlesComponent } from './articles/articles.component';
@@ -19,7 +19,7 @@ import { ArticleService } from './article.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   articleService = inject(ArticleService);
 
   title = 'conduit';
@@ -27,6 +27,12 @@ export class AppComponent {
 
   // 預設為全部文章
   list = this.articleService.searchArticles('');
+
+  ngOnInit(): void {
+    this.articleService.getArticles().subscribe((data) => {
+      this.list = data;
+    });
+  }
 
   // 根據關鍵字搜尋文章
   searchArticles(keyword: string) {
