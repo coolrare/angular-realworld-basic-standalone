@@ -7,12 +7,16 @@ import { FormsModule } from '@angular/forms';
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent {
   keyword = '';
+  highlightTitle = false;
+  fontSize = 24;
 
   search(event: MouseEvent) {
+    this.fontSize += 2;
+    this.highlightTitle = !this.highlightTitle;
     console.log(event);
   }
 }

@@ -1,6 +1,13 @@
 <nav class="navbar navbar-light">
   <div class="container">
-    <a class="navbar-brand" href="index.html">conduit</a>
+    <a
+      class="navbar-brand"
+      href="index.html"
+      [class.highlight]="highlightTitle"
+      [style.font-size.px]="fontSize"
+    >
+      conduit
+    </a>
     <input
       [(ngModel)]="keyword"
       class="form-control form-control-sm search-input"
